@@ -1,0 +1,44 @@
+{
+    "step-types": {
+        "script-module-step": [
+            {
+                "@type-id": "custom.changeProductCategory",
+                "@supports-parallel-execution": "false",
+                "@supports-site-context": "true",
+                "@supports-organization-context": "false",
+                "description": "Changes Category of Product of Particular Brand",
+                "module": "raunak_custom/cartridge/scripts/changeProductCategory.js",
+                "function": "generateXML",
+                "transactional": "true",
+                "timeout-in-seconds": "18000",
+                "parameters": {
+                    "parameter": [
+                        {
+                            "@name": "brandName",
+                            "@type": "string",
+                            "@required": "true",
+                            "@trim": "true",
+                            "description": "Brand Name To search products"
+                        }
+                   ]
+                },
+                "status-codes": {
+                    "status": [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        },
+                        {
+                            "@code": "OK",
+                            "description": "Used when the step finished successfully."
+                        },
+                        {
+                            "@code": "FINISHED_WITH_WARNINGS",
+                            "description": "Used when the step finished with warnings."
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
