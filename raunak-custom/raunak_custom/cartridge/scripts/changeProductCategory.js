@@ -4,6 +4,7 @@ var Transaction = require('dw/system/Transaction');
 var File = require('dw/io/File');
 var FileWriter = require('dw/io/FileWriter');
 var XMLStreamWriter = require('dw/io/XMLIndentingStreamWriter');
+var Logger = require('dw/system/Logger');
 
 /**
  * Crrating XML file In IMPEX folder
@@ -60,7 +61,7 @@ function createXML(products, brand) {
         xsw.close();
         fileWriter.close();
     } catch (exception) {
-        log.error("changeProductCategory.js : There was an error creating the xml file: {0}", exception.message);
+        Logger.error("changeProductCategory.js : There was an error creating the xml file: {0}", exception.message);
     }
 }
 
@@ -71,16 +72,15 @@ module.exports = {
  * Crrating XML file In IMPEX folder
  * @param {params} Job Params
  */
-generateXML: function generateXML(params) {
-    var Iterator = require('dw/util/Iterator');
-    params;
-    var productMgr = require('dw/catalog/ProductMgr');
-    var products = productMgr.queryAllSiteProducts();
-    var listProducts = products.asList();
-    var result = listProducts.toArray().filter(function(product) {
-    return product.brand === params.brandName;
-    });
-    createXML(result, params.brandName);
-    products.close();
-}
+    generateXML: function generateXML(params) {
+        var Iterator = require('dw/util/Iterator');
+        var productMgr = require('dw/catalog/ProductMgr');
+        var products = productMgr.queryAllSiteProducts();
+        var listProducts = products.asList();
+        var result = listProducts.toArray().filter(function(product) {
+            return product.brand === params.brandName;
+        });
+        createXML(result, params.brandName);
+        products.close();
+    }
 }
